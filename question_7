@@ -1,0 +1,5 @@
+UPDATE vaccinations v
+SET daily_vaccinations = (
+  SELECT MEDIAN(daily_vaccinations) FROM vaccinations WHERE country = v.country AND daily_vaccinations IS NOT NULL
+)
+WHERE daily_vaccinations IS NULL;
